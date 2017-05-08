@@ -7,7 +7,7 @@ session_start();
 </head>
 <body>
 <?php
-define("uploadsDir", "files/");
+define("UPLOADS_DIR", "files/");
 if ($_FILES["filename"]["size"] > 1024 * 5 * 1024) {
     echo("Размер файла превышает пять мегабайт");
     exit;
@@ -19,7 +19,7 @@ if ($_FILES['filename']['type'] !== 'application/pdf') {
 if (is_uploaded_file($_FILES["filename"]["tmp_name"])) {
     $name = basename($_FILES["filename"]["name"]);
     $tmpName = $_FILES["filename"]["tmp_name"];
-    move_uploaded_file($tmpName, "uploadsDir/$name");
+    move_uploaded_file($tmpName, UPLOADS_DIR . $name);
     echo("Файл успешно загружен");
 } else {
     echo("Ошибка при загрузке файла");
